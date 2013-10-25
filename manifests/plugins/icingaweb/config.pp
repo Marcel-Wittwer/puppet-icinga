@@ -6,10 +6,6 @@ class icinga::plugins::icingaweb::config {
     owner   => $icinga::params::webserver_user,
     group   => $icinga::params::webserver_group,
     require => Package[$icinga::params::icingaweb_pkg],
-    notify  => [
-      Service[$icinga::params::service_server],
-      Service[$icinga::params::service_webserver],
-    ]
   }
 
   file {
@@ -24,8 +20,10 @@ class icinga::plugins::icingaweb::config {
       notify   => Exec['icinga_web-db-initialize'];
 
     '/etc/icinga-web/conf.d/databases.xml':
-      ensure   => present,
-      content  => template('icinga/plugins/icingaweb/databases.xml');
+      ensure  => present,
+      owner   => 'root',
+      mode    => '0640',
+      content => template('icinga/plugins/icingaweb/databases.xml');
   }
 
   exec {

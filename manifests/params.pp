@@ -73,15 +73,15 @@ class icinga::params {
       $logdir_server             = '/var/log/icinga'
 
       # Plugin: Icinga Web
-      $icingaweb_pkg     = [ 'icinga-web', 'icinga-web-module-pnp' ]
-      $icingaweb_pkg_dep = [ 'perl-Locale-PO', 'php-ldap', 'php-pear', 'php-xml', 'php-mysql']
+      $icingaweb_pkg     = [ 'icinga-web', 'icinga-web-pnp' ]
+      $icingaweb_pkg_dep = [ ]
       $icingaweb_confdir = '/usr/share/icinga-web'
       $icingaweb_bindir  = "${icingaweb_confdir}/bin:${::path}"
-      $icingaweb_logdir  = '/usr/share/icinga-web/log'
+      $icingaweb_logdir  = '/var/log/icinga-web'
       $icingaweb_dbname  = 'icinga_web'
       $icingaweb_dbuser  = 'icinga_web'
       $icingaweb_dbpass  = 'icinga_web'
-      $icingaweb_vhost   = '/etc/httpd/conf.d/icinga-web.conf'
+      $icingaweb_vhost   = '/etc/apache2/conf.d/icinga-web.conf'
 
       # IDOUTILS: TO BE REFACTORED
       $idoutils_pkg     = 'icinga-idoutils'
